@@ -1,0 +1,61 @@
+package com.reconsiliation;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+
+public class Reconsiliation {
+	public static void main(String[] args) throws IOException
+	{
+	BufferedReader myReader1 = new BufferedReader(new FileReader("C:\\ForReconsiliation\\datasource1.csv"));
+
+	BufferedReader myReader2 = new BufferedReader(new FileReader("C:\\\\ForReconsiliation\\\\datasource2.csv"));
+
+	String source1 = myReader1.readLine();
+
+	String source2 = myReader2.readLine();
+
+	boolean areEqual = true;
+
+	int lineNum = 1;
+
+	while (source1 != null || source2 != null)
+	{
+	if(source1 == null || source2 == null)
+	{
+	areEqual = false;
+
+	break;
+	}
+	else if(! source1.equalsIgnoreCase(source2))
+	{
+	areEqual = false;
+
+	break;
+	}
+
+	source1 = myReader1.readLine();
+
+	source2 = myReader2.readLine();
+
+	lineNum++;
+	}
+
+	if(areEqual)
+	{
+	System.out.println("Two files have same content.");
+	}
+	else
+	{
+	System.out.println("Two files have different content. Difference is in "+lineNum);
+
+	System.out.println("File1 has "+source1+" and File2 has "+source2+" at line "+lineNum);
+	}
+
+	myReader1.close();
+
+	myReader2.close();
+	}
+}
